@@ -53,4 +53,4 @@ if __name__ == '__main__':
             '};\n',
         ])
 
-    subprocess.check_call(['gcc', '-O', '-fPIC', '-shared', '-Wl,--no-undefined', '-Wl,--version-script,' + os.path.join(os.path.dirname(__file__), '../src/libopensslqt5.map'), os.path.join(os.path.dirname(__file__), '../src/libopensslqt5.c'), '-o', 'libopensslqt5.so', '-ldl'])
+    # subprocess.check_call(['gcc', '-O', '-fPIC', '-shared', '-Wl,--no-undefined', '-Wl,--version-script,' + os.path.join(os.path.dirname(__file__), '../src/libopensslqt5.map'), os.path.join(os.path.dirname(__file__), '../src/libopensslqt5.c'), '-o', 'libopensslqt5.so', '-ldl'])
