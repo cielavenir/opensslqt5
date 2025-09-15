@@ -36,6 +36,10 @@ if __name__ == '__main__':
             '    if(ptr_libcrypto)dlclose(ptr_libcrypto);\n',
             '}\n',
             '\nint impl_ossl_statem_in_error(){return 0;}\n__asm__(".symver impl_ossl_statem_in_error,ossl_statem_in_error@@Qt_5");\n',
+            '\nvoid __attribute__((naked)) impl_SSL_get_peer_certificate(){goto *(void*)ptr_SSL_get1_peer_certificate;}\n__asm__(".symver impl_SSL_get_peer_certificate,SSL_get_peer_certificate@@Qt_5");\n',
+            '\nvoid __attribute__((naked)) impl_EVP_PKEY_security_bits(){goto *(void*)ptr_EVP_PKEY_get_security_bits;}\n__asm__(".symver impl_EVP_PKEY_security_bits,EVP_PKEY_security_bits@@Qt_5");\n',
+            '\nvoid __attribute__((naked)) impl_EVP_PKEY_bits(){goto *(void*)ptr_EVP_PKEY_get_bits;}\n__asm__(".symver impl_EVP_PKEY_bits,EVP_PKEY_bits@@Qt_5");\n',
+            '\nvoid __attribute__((naked)) impl_EVP_PKEY_id(){goto *(void*)ptr_EVP_PKEY_get_id;}\n__asm__(".symver impl_EVP_PKEY_id,EVP_PKEY_id@@Qt_5");\n',
         ] + [
             '\nvoid __attribute__((naked)) impl_%s(){goto *(void*)ptr_%s;}\n__asm__(".symver impl_%s,%s@@Qt_5");\n' % (symbol, symbol, symbol, symbol) for symbol in symbols_ssl + symbols_crypto
         ])
@@ -45,6 +49,10 @@ if __name__ == '__main__':
             'Qt_5 {\n',
             'global:\n',
             'ossl_statem_in_error;\n',
+            'SSL_get_peer_certificate;\n',
+            'EVP_PKEY_security_bits;\n',
+            'EVP_PKEY_bits;\n',
+            'EVP_PKEY_id;\n',
         ] + [
             symbol + ';\n' for symbol in symbols_ssl + symbols_crypto
         ] + [
