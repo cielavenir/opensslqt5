@@ -23,8 +23,8 @@ if __name__ == '__main__':
             '#pragma GCC visibility pop\n',
             '\n',
             '__attribute__((constructor,visibility("hidden"))) void init(){\n',
-            '    ptr_libssl = dlopen("libssl.so.1.1", RTLD_NOW);\n',
-            '    ptr_libcrypto = dlopen("libcrypto.so.1.1", RTLD_NOW);\n',
+            '    ptr_libssl = dlopen("libssl.so.3", RTLD_NOW);\n',
+            '    ptr_libcrypto = dlopen("libcrypto.so.3", RTLD_NOW);\n',
         ] + [
             '    ptr_%s = dlsym(ptr_libssl, "%s");\n' % (symbol, symbol) for symbol in symbols_ssl
         ] + [
