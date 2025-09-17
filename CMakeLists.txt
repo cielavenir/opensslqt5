@@ -9,6 +9,7 @@ configure_file("${CMAKE_SOURCE_DIR}/src/.gitkeep" "${CMAKE_BINARY_DIR}/src/.gitk
 add_custom_command(
   OUTPUT "${CMAKE_BINARY_DIR}/src/libopensslqt5.c" "${CMAKE_BINARY_DIR}/src/libopensslqt5.map"
   COMMAND "${CMAKE_BINARY_DIR}/scripts/generatesource.py"
+  DEPENDS "${CMAKE_BINARY_DIR}/scripts/generatesource.py"
 )
 
 add_library(opensslqt5 SHARED "${CMAKE_BINARY_DIR}/src/libopensslqt5.c")
